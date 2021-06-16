@@ -59,7 +59,7 @@ if __name__ == '__main__':
             .write \
             .format("delta") \
             .mode("overwrite") \
-            .save(df_path)
+            .save(delta_table_path)
         print("Write completed!")
 
         print("Reading data,")
@@ -77,6 +77,6 @@ if __name__ == '__main__':
             .write \
             .format("delta") \
             .mode("append") \
-            .save(df_path)
+            .save(delta_table_path)
 
 # spark-submit --packages "org.apache.hadoop:hadoop-aws:2.7.4,io.delta:delta-core_2.11:0.6.0" com/dsm/delta/schema_enforcement_demo.py
