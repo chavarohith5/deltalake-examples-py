@@ -44,7 +44,7 @@ if __name__ == '__main__':
 
     delta_table_path = "s3a://" + app_conf["s3_conf"]["s3_bucket"] + "/schema_enforcement_delta"
 
-    step = "append"
+    step = "overwrite"
     if step == "overwrite":
         data = sc.parallelize([
             ("Brazil",  2011, 22.029),
@@ -59,7 +59,7 @@ if __name__ == '__main__':
             .write \
             .format("delta") \
             .mode("overwrite") \
-            .save(delta_table_path)
+            .save(df_path)
         print("Write completed!")
 
         print("Reading data,")
@@ -77,6 +77,6 @@ if __name__ == '__main__':
             .write \
             .format("delta") \
             .mode("append") \
-            .save(delta_table_path)
+            .save(df_path)
 
 # spark-submit --packages "org.apache.hadoop:hadoop-aws:2.7.4,io.delta:delta-core_2.11:0.6.0" com/dsm/delta/schema_enforcement_demo.py
